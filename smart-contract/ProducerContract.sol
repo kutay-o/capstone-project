@@ -1,8 +1,8 @@
 //SPDX-License-Identifier: MIT
 pragma solidity ^0.8.7;
-import "./Product.sol";
+import "./ProductContract.sol";
 
-contract Producer is Product{
+contract ProducerContract is ProductContract{
 
     mapping (address => Producer) producerList;
     mapping (address => Product[]) producerProducts;
