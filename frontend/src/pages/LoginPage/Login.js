@@ -12,7 +12,7 @@ const Login = () => {
         let path = "/";
         navigate(path);
     }
-var account = null;
+    var account = null;
 
     const [data, setdata] = useState({
         address: "",
@@ -25,6 +25,7 @@ var account = null;
             window.ethereum
                 .request({ method: "eth_requestAccounts" })
                 .then((res) => accountChangeHandler(res[0]));
+            
         } else {
             alert("install metamask extension!!");
         }
@@ -52,7 +53,7 @@ var account = null;
         setdata({
             address: account,
         });
-
+        localStorage.setItem("wallet_address", account);
         // Setting a balance
         getbalance(account);
     };
@@ -70,7 +71,8 @@ var account = null;
                             <Col>
                                 <Image src={metamaskLogo} height={200} width={200} responsive onClick={connectMetaMask}></Image>
                                 <Col><Form.Label>Coin miktarı : {data.Balance == null ? 0 : data.Balance}</Form.Label></Col>
-                                <Col><Form.Label>Wallet adresi  : {data.address == null ? 0 : data.address}</Form.Label></Col>
+                                <Col><Form.Label>Wallet adresi  : {localStorage.getItem("wallet_address")}
+                                </Form.Label></Col>
                             </Col>
 
                         </FormGroup>
