@@ -6,22 +6,22 @@ import "./Utils.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract RecordContract is Actors, Utils{
-    mapping(uint => Record) records;
+    mapping(uint => Record) public records;
 
-    function createRecord(string memory registrantName, address registrantAddress,
+    function createRecordInternal(string memory registrantName, address registrantAddress,
     uint productId, string memory productName, string memory detail, string memory registrationDate)
-     public returns (Record memory) {
+     internal returns (uint) {
         uint record = getComplexNumber(block.number);
         Record memory sr = Record(registrantName, registrantAddress, record, productName, Strings.toString(productId), detail, registrationDate); 
         records[record] = sr;
-        return sr;
+        return record;
     }
 
-    function updateExistRecord(uint recordId, string memory detail) public returns (Record memory) {
+    function updateExistRecordInternal(uint recordId, string memory detail) internal returns (uint) {
         Record storage sr = records[recordId];
         require(sr.registrationNumber != 0, "record is not exist");
         sr.detail = detail;
-        return sr;
+        return sr.registrationNumber;
     }
 
     function getRecordByRecordId(uint recordId) public view returns(Record memory) {

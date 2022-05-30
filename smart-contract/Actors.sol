@@ -2,7 +2,7 @@
 pragma solidity ^0.8.7;
 
 contract Actors {
-     struct SingleRecord {
+     struct Record {
         string registrantName;
         address registrantAddress;
         uint registrationNumber; // hash de olabilir o zaman string gerek, recordId demek istedim
