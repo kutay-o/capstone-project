@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CompanyWorkersRepository extends JpaRepository<CompanyWorkers, long> {
+public interface CompanyWorkersRepository extends JpaRepository<CompanyWorkers, Long> {
     CompanyWorkers findCompanyWorkersByWallet(String wallet);
 }

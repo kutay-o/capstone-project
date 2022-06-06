@@ -1,9 +1,38 @@
+import { ethers } from "ethers";
 import { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import { createProduct, getProducerInfo } from "../../contractFunctions/ContractFunctions";
 import "./style.css";
 const AddProductPage = () => {
     const [productName, setProductName] = useState("");
     const [productDate, setProductDate] = useState("");
+    //const [companyId, setCompanyId] = useState(null);
+    const [productOwner, setProductOwner] = useState("");
+
+    const create = async (e) => {
+        e.preventDefault();
+        setProductOwner(localStorage.getItem("wallet_address"));
+        console.log("product-owner-local", setProductOwner(localStorage.getItem("wallet_address")));
+        console.log("productOwner", productOwner);
+        if(productOwner === '') {
+            console.error('connect your wallet.')
+            alert('connect your wallet');
+        }
+        else {
+            const producerInfo = await getProducerInfo(productOwner);
+            console.log("producerınfo: ", producerInfo);
+            console.log("company_id_before: ", producerInfo.companyId.toNumber());
+            const companyId = producerInfo.companyId.toNumber();
+            console.log("company_id: ", companyId);
+            try {
+                const createdProduct = await createProduct(productName, productDate, productOwner, companyId);
+                console.log("createdProduct: ", createProduct);
+            }catch(err) {
+                console.log("errorrrrrrr", err);
+            }
+        }
+    }
+
     return (
         <div className="AddProduct">
             <header className="AddProduct-header">
@@ -17,7 +46,7 @@ const AddProductPage = () => {
                             <Form.Control type="text" value={productName} onChange={(event) => setProductName(event.target.value)} />
                             <Form.Label>Kayıt tarihini giriniz</Form.Label>
                             <Form.Control type="date" value={productDate} onChange={(event) => setProductDate(event.target.value)} />
-                            <Button variant="primary" type="submit" /*onClick={() => changeRouteToResult(productId)} */>
+                            <Button variant="primary" type="submit" onClick={(e) => create(e)}>
                                 Kaydet
                             </Button>
                         </Form.Group>

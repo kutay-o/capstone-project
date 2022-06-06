@@ -18,7 +18,7 @@ const AddRecordToProduct = () => {
                             <Form.Label>Kayıt tarihini giriniz</Form.Label>
                             <Form.Control type="date" value={productDate} onChange={(event) => setProductDate(event.target.value)} />
                             <Form.Label>Detaylı açıklama</Form.Label>
-                            <Form.Control as="textarea" style={{ height :150,width:220}}/>
+                            <Form.Control as="textarea" style={{ height :150,width:220 }}/>
                             <Button variant="primary" type="submit" /*onClick={() => changeRouteToResult(productId)} */>
                                 Kaydet
                             </Button>
