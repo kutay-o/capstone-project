@@ -19,6 +19,7 @@ const Login = () => {
     const changeRouteToProductAdd = () => {
         let path = "/products";
         navigate(path);
+        window.location.reload();
     }
     var account = null;
 

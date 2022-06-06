@@ -31,7 +31,7 @@ const FetchProducts = () => {
             bg="success"
             key="Success"  
             style={{ width: 250, height: 200, padding: 20}}
-            className="mb-2"
+            className="m-3"
             >
                 <Card.Body>
                     <Card.Title>Ürün id : {product.productId.toNumber()}</Card.Title>

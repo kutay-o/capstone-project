@@ -1,6 +1,6 @@
 import { Button, Container, Row } from "react-bootstrap";
 import React from "react";
-import "./style.css";
+import "./HomePage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 
