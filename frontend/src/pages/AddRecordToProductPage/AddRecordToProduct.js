@@ -1,9 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import { addRecordToProduct } from "../../contractFunctions/ContractFunctions";
 import "./style.css";
 const AddRecordToProduct = () => {
-    const [productName, setProductName] = useState("");
-    const [productDate, setProductDate] = useState("");
+    const [companyName, setCompanyName] = useState("");
+    const [recordDate, setRecordDate] = useState("");
+    const [recordDetail, setRecordDetail] = useState("");
+    const { productId } = useParams();
+
+    const addRecord = async (e) => {
+        e.preventDefault();
+        const producerAddress = localStorage.getItem("wallet_address");
+        console.log("addRecordToProduct productId", productId)
+        await addRecordToProduct(productId, companyName, producerAddress, recordDetail, recordDate)
+        alert("Kayıt başarıyla oluşturuldu. !")
+    }
+
     return (
         <div className="AddRecordToProduct">
             <header className="AddRecordToProduct-header">
@@ -14,12 +27,12 @@ const AddRecordToProduct = () => {
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Kaydı yapan firma adı</Form.Label>
-                            <Form.Control type="text" value={productName} onChange={(event) => setProductName(event.target.value)} />
+                            <Form.Control type="text" value={companyName} onChange={(event) => setCompanyName(event.target.value)} />
                             <Form.Label>Kayıt tarihini giriniz</Form.Label>
-                            <Form.Control type="date" value={productDate} onChange={(event) => setProductDate(event.target.value)} />
+                            <Form.Control type="date" value={recordDate} onChange={(event) => setRecordDate(event.target.value)} />
                             <Form.Label>Detaylı açıklama</Form.Label>
-                            <Form.Control as="textarea" style={{ height :150,width:220 }}/>
-                            <Button variant="primary" type="submit" /*onClick={() => changeRouteToResult(productId)} */>
+                            <Form.Control as="textarea" style={{ height :150,width:220 }} value={recordDetail} onChange={(event) => setRecordDetail(event.target.value)} />
+                            <Button variant="primary" type="submit" onClick={(e) => addRecord(e)} >
                                 Kaydet
                             </Button>
                         </Form.Group>

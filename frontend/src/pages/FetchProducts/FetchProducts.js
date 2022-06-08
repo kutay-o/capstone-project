@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Card, CardGroup, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { getCompanyProducts, getProducerInfo } from "../../contractFunctions/ContractFunctions";
 import "./style.css";
 const FetchProducts = () => {
@@ -39,7 +40,12 @@ const FetchProducts = () => {
                     <Card.Text>
                         {product.productName}
                     </Card.Text>
-                    <Button variant="primary">Ürün üzerine kayıt girin</Button>
+                    <Link to={`/product-record-add/${product.productId.toNumber()}`}>
+                    <Button variant="primary">Ürüne kayıt ekle</Button>
+                    </Link>
+                    <Link to={`/fetch-product-records/${product.productId.toNumber()}`}>
+                    <Button variant="primary">Ürün kayıtlarını getir</Button>
+                    </Link>
                 </Card.Body>
             </Card>
         )

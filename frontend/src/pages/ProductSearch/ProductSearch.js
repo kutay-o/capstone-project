@@ -33,7 +33,7 @@ const ProductSearch = () => {
                         <Form.Label>Ürün kodu giriniz</Form.Label>
                         <Form.Control type="text" placeholder="örnek:3800298312" value={productId} onChange={(event) => setProductId(event.target.value)} />
                         <Link to={`/p/${productId}`}>
-                            <Button variant="primary" type="submit" /*onClick={() => changeRouteToResult(productId)} */>
+                            <Button variant="primary" type="submit">
                                 Sorgula
                             </Button>
                         </Link>

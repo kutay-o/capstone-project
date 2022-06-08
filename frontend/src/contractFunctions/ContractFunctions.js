@@ -91,6 +91,41 @@ export async function requestAccount() {
       }    
   }
 
+  export async function addRecordToProduct(productId, companyName, producerAddress, detail, registrationDate) {
+    if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        console.log({ provider })
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, contractABI, signer)
+        try {
+          const data = await contract.addRecordToProduct(productId, companyName, producerAddress, detail, registrationDate);
+          console.log('data', data);
+          return data;
+        } catch (err) {
+          console.log("Error: ", err)
+		  alert(err.message);
+        }
+      }    
+  }
+
+  export async function getProductRecordsByProductId(productId) {
+    if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        console.log({ provider })
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, contractABI, signer)
+        try {
+          const data = await contract.getProductRecordsByProductId(productId);
+          console.log('data', data);
+          return data;
+        } catch (err) {
+          console.log("Error: ", err)
+		  alert(err.message);
+        }
+      }    
+  }
+
+
   const contractABI = [
 	{
 		"inputs": [

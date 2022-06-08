@@ -1,6 +1,10 @@
 import './sidebar.css';
 import { BrowserRouter, Route, Router, Routes, Link } from 'react-router-dom';
 
+const exitButtonAction = () => {
+    localStorage.removeItem("wallet_address");
+}
+
 const Sidebar = () => {
     return ( 
         <div className="sidebar">
@@ -13,7 +17,7 @@ const Sidebar = () => {
                         <Link to="/add-employee">Çalışan ekle</Link>
                     </li>
                     <li>
-                        <a href="#">Çıkış Yap</a>
+                        <Link onClick={exitButtonAction} to="/">Çıkış yap</Link>
                     </li>
                 </ul>
             </nav>

@@ -12,7 +12,9 @@ function App() {
 
   useEffect(() => {
     console.log("window-path: ", window.location.pathname)
-          if(window.location.pathname == '/' || window.location.pathname == '/login')
+          if(window.location.pathname == '/' || window.location.pathname == '/login'
+          || window.location.pathname == '/product-search' || window.location.pathname.startsWith('/p/') 
+          )
             setSideBarComponent(null)
           else
             setSideBarComponent(<Sidebar/>)

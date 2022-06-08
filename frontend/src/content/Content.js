@@ -9,6 +9,7 @@ import FetchProducts from '../pages/FetchProducts/FetchProducts';
 import Login from '../pages/LoginPage/Login';
 
 import './content.css';
+import FetchProductRecords from '../pages/FetchProductRecords/FetchProductRecords';
 
 const Content = () => {
     return ( 
@@ -19,7 +20,8 @@ const Content = () => {
                 <Route path='/product-search' element={<ProductSearch />} />
                 <Route path = '/p/:productId' element={<ProductResult />} />
                 <Route path = '/product-add' element={<AddProductPage />} /> 
-                <Route path = '/product-record-add' element={<AddRecordToProduct />} /> 
+                <Route path = '/product-record-add/:productId' element={<AddRecordToProduct />} /> 
+                <Route path = '/fetch-product-records/:productId' element={<FetchProductRecords />} /> 
                 <Route path = '/first-register' element={<FirstRegistrationPage />} /> 
                 <Route path = '/products' element={<FetchProducts />} /> 
             </Routes>
