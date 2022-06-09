@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Card, CardGroup } from "react-bootstrap";
+import { Button, Card, CardGroup, Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { getProductRecordsByProductId } from "../../contractFunctions/ContractFunctions";
 import "./style.css"
@@ -23,31 +23,45 @@ const FetchProductRecords = () => {
         return productRecords;
     }
 
-    const recordsCardList = recordList.map((record) => {
+    const recordsCardList = <Row xs={1} md={3} className="g-4" >
+    {recordList.map((record) => {
         return (
+            <Col style={{alignItems:"center", justifyContent:"center", display:"flex"}}>
             <Card
-            bg="success"
-            key="Success"  
-            style={{ width: 350, height: 400, padding: 20}}
-            className="m-3"
+                bg="success"
+                key="Success"
+                style={{ width: 350, padding: 20, display:"flex" }}
+                className="m-3"
             >
                 <Card.Body>
-                    <Card.Title>Ürün id : {productId}</Card.Title>
-                    <Card.Subtitle className="mb-3 text-muted"> Kayıt tarihi : {record.registrationDate}</Card.Subtitle>
+                    <Card.Title style={{fontSize: "25px"}}>Ürün id : {productId}</Card.Title>
+                    <Card.Subtitle className="mb-3 text-muted" style={{fontSize: "15px"}}> Kayıt tarihi : {record.registrationDate}</Card.Subtitle>
+                    <Card.Text style={{fontSize: "11px"}}>
                     <Card.Text>
                         Kayıt id : {record.registrationNumber.toNumber()}
+                    </Card.Text>
+                    <Card.Text>
                         Kayıt eden : {record.registrantName}
+                    </Card.Text>
+                    <Card.Text>
                         Ürün adı : {record.productName}
+                    </Card.Text>
+                    <Card.Text style={{ whiteSpace: "nowrap", overflow:"hidden", textOverflow: "ellipsis" }}> 
                         İşlem : {record.detail}
                     </Card.Text>
-                    <Button variant="primary">Ürüne kayıt ekle</Button>
-                    <Button variant="primary">Ürün kayıtlarını getir</Button>
+                    </Card.Text>
+                    
                 </Card.Body>
+                <div style={{ display:"flex", flexDirection:"column", alignItems:"center",}}>
+                    <Button style={{marginBottom: "10px"}} variant="primary">Düzenle</Button>
+                    <Button variant="primary">Detay</Button>
+                    </div>
             </Card>
+            </Col>
         )
-    })
+    })} </Row>
 
-    return (  
+    return (
         <div className="FetchProductRecords">
             <header className="FetchProductRecords-header">
                 <CardGroup>
@@ -57,5 +71,5 @@ const FetchProductRecords = () => {
         </div>
     );
 }
- 
+
 export default FetchProductRecords;

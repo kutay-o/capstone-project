@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Card, CardGroup, Col } from "react-bootstrap";
+import { Button, Card, CardGroup, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getCompanyProducts, getProducerInfo } from "../../contractFunctions/ContractFunctions";
 import "./style.css";
@@ -13,7 +13,7 @@ const FetchProducts = () => {
         fetchCompanyProducts()
         console.log("productlİst ", productList);
 
-    }, [])
+    })
 
     const getProducts = async () => {
         console.log("productmap triggered");
@@ -25,36 +25,41 @@ const FetchProducts = () => {
         return companyProducts;
     }
 
-    const productsCardList = productList.map((product) => {
+    const productsCardList = <Row xs={1} md={3} className="g-4" >
+    {productList.map((product) => {
         console.log("productMap", product.productName)
         return (
+            <Col style={{alignItems:"center", justifyContent:"center", display:"flex"}}>
             <Card
-            bg="success"
-            key="Success"  
-            style={{ width: 250, height: 200, padding: 20}}
-            className="m-3"
+                bg="success"
+                key="Success"
+                style={{ width: 350, padding: 20}}
+                className="m-3"
             >
                 <Card.Body>
-                    <Card.Title>Ürün id : {product.productId.toNumber()}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{product.productDate}</Card.Subtitle>
-                    <Card.Text>
+                    <Card.Title style={{ fontSize: "25px" }}>Ürün id : {product.productId.toNumber()}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted" style={{ fontSize: "15px" }}>{product.productDate}</Card.Subtitle>
+                    <Card.Text style={{ fontSize: "11px" }}>
                         {product.productName}
                     </Card.Text>
-                    <Link to={`/product-record-add/${product.productId.toNumber()}`}>
-                    <Button variant="primary">Ürüne kayıt ekle</Button>
-                    </Link>
-                    <Link to={`/fetch-product-records/${product.productId.toNumber()}`}>
-                    <Button variant="primary">Ürün kayıtlarını getir</Button>
-                    </Link>
                 </Card.Body>
+                <div style={{ display:"flex", flexDirection:"column", alignItems:"center",}}>
+                <Link to={`/product-record-add/${product.productId.toNumber()}`}>
+                    <Button style={{marginBottom: "10px"}} variant="primary">Ürüne kayıt ekle</Button>
+                </Link>
+                <Link to={`/fetch-product-records/${product.productId.toNumber()}`}>
+                    <Button variant="primary">Ürün kayıtlarını getir</Button>
+                </Link>
+                </div>
             </Card>
+            </Col>
         )
-    })
+    })} </Row>
 
     return (
         <div className="FetchProducts">
             <header className="FetchProducts-header">
-                <CardGroup>
+                <CardGroup >
                     {productsCardList}
                 </CardGroup>
             </header>

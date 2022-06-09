@@ -6,10 +6,13 @@ const exitButtonAction = () => {
 }
 
 const Sidebar = () => {
-    return ( 
+    return (
         <div className="sidebar">
             <nav className="menu">
                 <ul>
+                    <li>
+                        <Link to="/product-add">Ürün ekle</Link>
+                    </li>
                     <li>
                         <Link to="/products">Ürün listele</Link>
                     </li>
@@ -22,7 +25,7 @@ const Sidebar = () => {
                 </ul>
             </nav>
         </div>
-     );
+    );
 }
- 
+
 export default Sidebar;
