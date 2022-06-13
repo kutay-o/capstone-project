@@ -10,6 +10,17 @@ import { render } from '@testing-library/react';
 function App() {
   const [sideBarComponent, setSideBarComponent] = useState(null);
 
+  const checkSideBar =  () => {
+    console.log("window-path: ", window.location.pathname)
+    if(window.location.pathname == '/' || window.location.pathname == '/login'
+    || window.location.pathname == '/product-search' || window.location.pathname.startsWith('/p/') 
+    ) {
+      return null;
+    }
+    else
+      return <Sidebar/>;
+  }
+  /*
   useEffect(() => {
     console.log("window-path: ", window.location.pathname)
           if(window.location.pathname == '/' || window.location.pathname == '/login'
@@ -18,12 +29,12 @@ function App() {
             setSideBarComponent(null)
           else
             setSideBarComponent(<Sidebar/>)
-  });
-
+  }, []);
+*/
   return (
     <BrowserRouter> 
       <section className="wrapper">
-        {sideBarComponent}
+        {checkSideBar()}
         <Content />
       </section>
     </BrowserRouter>

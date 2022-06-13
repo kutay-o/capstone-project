@@ -15,26 +15,24 @@
 	{
 		"inputs": [
 			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "producerAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "companyName",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "companyId",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct Actors.Producer",
-				"name": "producer",
-				"type": "tuple"
+				"internalType": "address",
+				"name": "producerAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "producerName",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "companyId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "companyName",
+				"type": "string"
 			}
 		],
 		"name": "addProducerToSystemWithCompanyId",
@@ -137,27 +135,17 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "address",
+				"internalType": "uint256",
 				"name": "",
-				"type": "address"
+				"type": "uint256"
 			}
 		],
-		"name": "companyEmployees",
+		"name": "companyProducersAddresses",
 		"outputs": [
 			{
 				"internalType": "address",
-				"name": "producerAddress",
+				"name": "",
 				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "companyName",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "companyId",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -176,27 +164,12 @@
 				"type": "uint256"
 			}
 		],
-		"name": "companyProducts",
+		"name": "companyProductIds",
 		"outputs": [
 			{
 				"internalType": "uint256",
-				"name": "productId",
+				"name": "",
 				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "productName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "productDate",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "productOwner",
-				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -558,6 +531,11 @@
 				"internalType": "uint256",
 				"name": "companyId",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "producerName",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -720,31 +698,14 @@
 				"type": "uint256"
 			},
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "productId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "productName",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "productDate",
-						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "productOwner",
-						"type": "address"
-					}
-				],
-				"internalType": "struct Actors.Product",
-				"name": "product",
-				"type": "tuple"
+				"internalType": "string",
+				"name": "productName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "productDate",
+				"type": "string"
 			}
 		],
 		"name": "updateProductByProductId",

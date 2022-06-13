@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import { useState } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { createProduct, getProducerInfo } from "../../contractFunctions/ContractFunctions";
 import "./style.css";
 const AddProductPage = () => {
@@ -8,13 +9,19 @@ const AddProductPage = () => {
     const [productDate, setProductDate] = useState("");
     //const [companyId, setCompanyId] = useState(null);
     const [productOwner, setProductOwner] = useState("");
+    let navigate = useNavigate();
+
+    const changeRouteToProductAdd = () => {
+        let path = "/products";
+        navigate(path);
+    }
 
     const create = async (e) => {
         e.preventDefault();
         setProductOwner(localStorage.getItem("wallet_address"));
         console.log("product-owner-local", setProductOwner(localStorage.getItem("wallet_address")));
         console.log("productOwner", productOwner);
-        if(productOwner === '') {
+        if (productOwner === '') {
             console.error('connect your wallet.')
             alert('connect your wallet');
         }
@@ -27,7 +34,7 @@ const AddProductPage = () => {
             try {
                 const createdProduct = await createProduct(productName, productDate, productOwner, companyId);
                 console.log("createdProduct: ", createProduct);
-            }catch(err) {
+            } catch (err) {
                 console.log("errorrrrrrr", err);
             }
         }
@@ -51,6 +58,9 @@ const AddProductPage = () => {
                             </Button>
                         </Form.Group>
                     </Form>
+                    <Button variant="danger" type="submit" onClick={(e) => changeRouteToProductAdd(e)} >
+                        Ürünlerime dön
+                    </Button>
                 </Container>
             </header>
         </div>

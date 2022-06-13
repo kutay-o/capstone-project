@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { addRecordToProduct } from "../../contractFunctions/ContractFunctions";
 import "./style.css";
 const AddRecordToProduct = () => {
@@ -8,6 +8,12 @@ const AddRecordToProduct = () => {
     const [recordDate, setRecordDate] = useState("");
     const [recordDetail, setRecordDetail] = useState("");
     const { productId } = useParams();
+    let navigate = useNavigate();
+
+    const changeRouteToProductAdd = () => {
+        let path = "/products";
+        navigate(path);
+    }
 
     const addRecord = async (e) => {
         e.preventDefault();
@@ -31,12 +37,15 @@ const AddRecordToProduct = () => {
                             <Form.Label>Kayıt tarihini giriniz</Form.Label>
                             <Form.Control type="date" value={recordDate} onChange={(event) => setRecordDate(event.target.value)} />
                             <Form.Label>Detaylı açıklama</Form.Label>
-                            <Form.Control as="textarea" style={{ height :150,width:220 }} value={recordDetail} onChange={(event) => setRecordDetail(event.target.value)} />
+                            <Form.Control as="textarea" style={{ height :150,width:220, marginLeft:"35px" }} value={recordDetail} onChange={(event) => setRecordDetail(event.target.value)} />
                             <Button variant="primary" type="submit" onClick={(e) => addRecord(e)} >
                                 Kaydet
                             </Button>
                         </Form.Group>
                     </Form>
+                    <Button variant="danger" type="submit" onClick={(e) => changeRouteToProductAdd(e)} >
+                        Ürünlerime dön
+                    </Button>
                 </Container>
             </header>
         </div>

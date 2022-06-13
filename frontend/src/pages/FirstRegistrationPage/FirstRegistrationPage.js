@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { createCompany } from "../../apis/BackendServices";
 import { addProducerToSystem, getProducerInfo } from "../../contractFunctions/ContractFunctions";
 import "./style.css";
@@ -9,9 +9,11 @@ const FirstRegistrationPage = () => {
     const [companyName, setCompanyName] = useState("");
     const [companyAddress, setCompanyAddress] = useState("");
     let navigate = useNavigate();
+    let location = useLocation();
     const changeRouteToProductAdd = () => {
         let path = "/product-add";
         navigate(path);
+        location.window.reload();
     }
 
     const saveCompany = async (e) => {

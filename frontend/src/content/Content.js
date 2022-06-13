@@ -10,6 +10,10 @@ import Login from '../pages/LoginPage/Login';
 
 import './content.css';
 import FetchProductRecords from '../pages/FetchProductRecords/FetchProductRecords';
+import UpdateRecord from '../pages/UpdateRecordPage/UpdateRecord';
+import UpdateProduct from '../pages/UpdateProductPage/UpdateProduct';
+import FetchEmployee from '../pages/FetchEmployeePage/FetchEmployee';
+import AddEmployee from '../pages/AddEmployeePage/AddEmployee';
 
 const Content = () => {
     return ( 
@@ -21,9 +25,13 @@ const Content = () => {
                 <Route path = '/p/:productId' element={<ProductResult />} />
                 <Route path = '/product-add' element={<AddProductPage />} /> 
                 <Route path = '/product-record-add/:productId' element={<AddRecordToProduct />} /> 
+                <Route path = '/update-record/:recordId' element={<UpdateRecord />} /> 
+                <Route path = '/update-product/:productId' element={<UpdateProduct />} /> 
                 <Route path = '/fetch-product-records/:productId' element={<FetchProductRecords />} /> 
                 <Route path = '/first-register' element={<FirstRegistrationPage />} /> 
                 <Route path = '/products' element={<FetchProducts />} /> 
+                <Route path = '/fetch-employee' element={<FetchEmployee />} /> 
+                <Route path = '/add-employee' element={<AddEmployee />} /> 
             </Routes>
       </section>
      );

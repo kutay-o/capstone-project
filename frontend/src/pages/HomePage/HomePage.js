@@ -1,5 +1,5 @@
 import { Button, Container, Row } from "react-bootstrap";
-import React from "react";
+import React, { useEffect } from "react";
 import "./HomePage.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +15,10 @@ const HomePage = () => {
         let path = "/product-search";
         navigate(path);
     }
+
+    useEffect(() => {
+
+    })
     return (
         <div className="HomePage">
             <header className="HomePage-header">

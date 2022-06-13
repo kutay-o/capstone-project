@@ -56,6 +56,9 @@ const Login = () => {
             let path = "/first-register";
             navigate(path);
         } else {
+            localStorage.setItem("producerInfo", JSON.stringify(respone.content));
+            const contractResponse = await getProducerInfo(walletAddress);
+            localStorage.setItem("producerName", contractResponse.producerName);
             changeRouteToProductAdd();
         }
         /* 

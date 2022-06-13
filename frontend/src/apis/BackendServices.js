@@ -44,3 +44,27 @@ export async function createCompany(company) {
     }
     return response;
 }
+
+export async function addEmployeeToCompany(employee) {
+    console.log("addEmployeeToCompany: ", employee);
+    try {
+        await axios.post("http://localhost:8080/company/add/employee", employee)
+            .then(res => {
+                console.log("res: ", res);
+            })
+    } catch (err) {
+        console.log("addEmployeeToCompany err: ", err);
+    }
+}
+
+export async function removeEmployee(employee) {
+    console.log("removeEmployee: ", employee);
+    try {
+        await axios.post("http://localhost:8080/company/delete/employee", employee)
+            .then(res => {
+                console.log("res: ", res);
+            })
+    } catch (err) {
+        console.log("removeEmployee err: ", err);
+    }
+}

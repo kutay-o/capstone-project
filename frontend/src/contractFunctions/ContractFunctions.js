@@ -1,6 +1,8 @@
 import { ethers } from "ethers";
 
-const contractAddress = "0x215440A363Ded85c42a77AA438E6638E563741ec";
+//const contractAddress = "0x215440A363Ded85c42a77AA438E6638E563741ec";
+//const contractAddress = "0xb5B5125f0254df31843482540F5F19da03A325D4";
+const contractAddress = "0x489616f85942393445fBA944E0e3ef5d847fb1c6";
 export async function requestAccount() {
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     return accounts[0];
@@ -125,6 +127,108 @@ export async function requestAccount() {
       }    
   }
 
+  export async function updateExistRecord(recordId, detail) {
+    if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        console.log({ provider })
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, contractABI, signer)
+        try {
+          const data = await contract.updateExistRecord(recordId, detail);
+          console.log('data', data);
+          return data;
+        } catch (err) {
+          console.log("Error: ", err)
+		  alert(err.message);
+        }
+      }    
+  }
+
+  export async function updateProductByProductId(productId, productName, productDate) {
+    if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        console.log({ provider })
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, contractABI, signer)
+        try {
+          const data = await contract.updateProductByProductId(productId, productName, productDate);
+          console.log('data', data);
+          return data;
+        } catch (err) {
+          console.log("Error: ", err)
+		  alert(err.message);
+        }
+      }    
+  }
+
+  export async function getCompanyProducers(companyId) {
+    if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        console.log({ provider })
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, contractABI, signer)
+        try {
+          const data = await contract.getCompanyProducers(companyId);
+          console.log('data', data);
+          return data;
+        } catch (err) {
+          console.log("Error: ", err)
+		  alert(err.message);
+        }
+      }    
+  }
+
+  export async function addProducerToSystemWithCompanyId(producerAddress, producerName, companyId, companyName) {
+    if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        console.log({ provider })
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, contractABI, signer)
+        try {
+          const data = await contract.addProducerToSystemWithCompanyId(producerAddress, producerName, companyId, companyName);
+          console.log('data', data);
+          return data;
+        } catch (err) {
+          console.log("Error: ", err)
+		  alert(err.message);
+        }
+      }    
+  }
+
+  export async function getOwnerOfCompany(companyId) {
+    if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        console.log({ provider })
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, contractABI, signer)
+        try {
+          const data = await contract.ownerOfCompany(companyId);
+          console.log('data', data);
+          return data;
+        } catch (err) {
+          console.log("Error: ", err)
+		  alert(err.message);
+        }
+      }    
+  }
+
+  export async function removeProducerFromCompany(removedAdress, companyId) {
+    if (typeof window.ethereum !== 'undefined') {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        console.log({ provider })
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(contractAddress, contractABI, signer)
+        try {
+          const data = await contract.removeProducerFromCompany(removedAdress, companyId);
+          console.log('data', data);
+          return data;
+        } catch (err) {
+          console.log("Error: ", err)
+		  alert(err.message);
+        }
+      }    
+  }
+
 
   const contractABI = [
 	{
@@ -143,26 +247,24 @@ export async function requestAccount() {
 	{
 		"inputs": [
 			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "producerAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "companyName",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "companyId",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct Actors.Producer",
-				"name": "producer",
-				"type": "tuple"
+				"internalType": "address",
+				"name": "producerAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "producerName",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "companyId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "companyName",
+				"type": "string"
 			}
 		],
 		"name": "addProducerToSystemWithCompanyId",
@@ -265,27 +367,17 @@ export async function requestAccount() {
 				"type": "uint256"
 			},
 			{
-				"internalType": "address",
+				"internalType": "uint256",
 				"name": "",
-				"type": "address"
+				"type": "uint256"
 			}
 		],
-		"name": "companyEmployees",
+		"name": "companyProducersAddresses",
 		"outputs": [
 			{
 				"internalType": "address",
-				"name": "producerAddress",
+				"name": "",
 				"type": "address"
-			},
-			{
-				"internalType": "string",
-				"name": "companyName",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "companyId",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -304,27 +396,12 @@ export async function requestAccount() {
 				"type": "uint256"
 			}
 		],
-		"name": "companyProducts",
+		"name": "companyProductIds",
 		"outputs": [
 			{
 				"internalType": "uint256",
-				"name": "productId",
+				"name": "",
 				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "productName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "productDate",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "productOwner",
-				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -428,6 +505,47 @@ export async function requestAccount() {
 			}
 		],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "companyId",
+				"type": "uint256"
+			}
+		],
+		"name": "getCompanyProducers",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "producerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "companyName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "companyId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "producerName",
+						"type": "string"
+					}
+				],
+				"internalType": "struct Actors.Producer[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -686,6 +804,11 @@ export async function requestAccount() {
 				"internalType": "uint256",
 				"name": "companyId",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "producerName",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -848,31 +971,14 @@ export async function requestAccount() {
 				"type": "uint256"
 			},
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "productId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "productName",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "productDate",
-						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "productOwner",
-						"type": "address"
-					}
-				],
-				"internalType": "struct Actors.Product",
-				"name": "product",
-				"type": "tuple"
+				"internalType": "string",
+				"name": "productName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "productDate",
+				"type": "string"
 			}
 		],
 		"name": "updateProductByProductId",

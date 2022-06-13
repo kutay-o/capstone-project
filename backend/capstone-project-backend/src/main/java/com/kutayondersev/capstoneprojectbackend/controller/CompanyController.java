@@ -51,7 +51,7 @@ public class CompanyController {
         return ResponseEntity.ok(null);
     }
 
-    @DeleteMapping("delete/employee")
+    @PostMapping("/delete/employee")
     public ResponseEntity<Void> deleteEmployeeFromCompany(
             @RequestBody DeleteEmployeeRequest deleteEmployeeRequest
     ) {
