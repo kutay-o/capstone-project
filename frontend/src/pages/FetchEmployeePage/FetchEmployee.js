@@ -54,7 +54,7 @@ const FetchEmployee = () => {
         </Card.Title> : employeeList.map((employee) => {
             if (employee.producerAddress != "0x0000000000000000000000000000000000000000") {
                 return (
-                    <Col style={{ alignItems: "center", justifyContent: "center", display: "flex" }}>
+                    <Col style={{ alignItems: "center", justifyContent: "center", display: "flex" , flex:1}}>
                         <Card
                             bg="success"
                             key="Success"

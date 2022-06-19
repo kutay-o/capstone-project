@@ -1,8 +1,10 @@
 import './sidebar.css';
+import logo from './logo2.png';
 import { BrowserRouter, Route, Router, Routes, Link, useNavigate } from 'react-router-dom';
 import HomePage from '../pages/HomePage/HomePage';
 import { render } from 'react-dom';
 import { useEffect, useState } from 'react';
+import { Image } from "react-bootstrap";
 
 const Sidebar = () => {
     let navigate = useNavigate();
@@ -45,6 +47,9 @@ const Sidebar = () => {
                         Kullanıcı : {producerName}
                     </li>
                 </ul>
+            </nav>
+            <nav>
+                <Image src={logo} style={{display: "flex", width: "110%", justifyContent: "center", paddingTop: "15px"}}></Image>
             </nav>
         </div>
     );

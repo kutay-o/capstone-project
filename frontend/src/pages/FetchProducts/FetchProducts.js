@@ -9,7 +9,7 @@ import { QRCodeCanvas, QRCodeSVG } from "qrcode.react";
 
 const FetchProducts = () => {
     const [productList, setProductList] = useState([]);
-    const qrRef = React.useRef();
+    const qrRef = React.useRef([]);
 
 
     useEffect(() => {
@@ -31,9 +31,9 @@ const FetchProducts = () => {
         return companyProducts;
     }
 
-    const downloadQRCodeProduct = (e) => {
+    const downloadQRCodeProduct = (e, index) => {
         e.preventDefault();
-        let canvas = qrRef.current.querySelector("canvas");
+        let canvas = qrRef.current[index].querySelector("canvas");
         let image = canvas.toDataURL("image/png");
         let anchor = document.createElement("a");
         anchor.href = image;
@@ -47,10 +47,10 @@ const FetchProducts = () => {
         {productList.length == 0 ? <Card.Title
             style={{ fontSize: "35px", marginRight: "20px", marginLeft: "200px" }}>
             Henüz ürün girilmemiştir
-        </Card.Title> : productList.map((product) => {
+        </Card.Title> : productList.map((product, index) => {
             console.log("productMap", product.productName)
             return (
-                <Col style={{ alignItems: "center", justifyContent: "center", display: "flex" }}>
+                <Col style={{ alignItems: "center", justifyContent: "center", display: "flex", flex:1}}>
                     <Card
                         bg="success"
                         key="Success"
@@ -75,8 +75,8 @@ const FetchProducts = () => {
                         <Link to={`/update-product/${product.productId.toNumber()}`} state={{ productObject: product }}>
                             <Image height={20} width={35} style={{ position: "absolute", right: "10px", bottom: "10px" }} src={editLogo}></Image>
                         </Link>
-                        <div ref={qrRef}>
-                        <QRCodeCanvas style={{"width":"40px", "height":"40px", "marginTop":"15px"}} value={`http://192.168.1.41:3000/p/${product.productId.toNumber()}`} onClick={(e) => downloadQRCodeProduct(e)}/>
+                        <div ref={e => qrRef.current[index]=e}>
+                        <QRCodeCanvas style={{"width":"40px", "height":"40px", "marginTop":"15px"}} value={`http://192.168.1.41:3000/p/${product.productId.toNumber()}`} onClick={(e) => downloadQRCodeProduct(e, index)}/>
                         </div>
                         
                     </Card>

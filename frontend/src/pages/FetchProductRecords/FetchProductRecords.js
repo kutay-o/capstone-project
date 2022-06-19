@@ -36,7 +36,7 @@ const FetchProductRecords = () => {
             Henüz kayıt girilmemiştir
         </Card.Title> : recordList.map((record) => {
             return (
-                <Col style={{ alignItems: "center", justifyContent: "center", display: "flex" }}>
+                <Col style={{ alignItems: "center", justifyContent: "center", display: "flex", flex:1 }}>
                     <Card
                         bg="success"
                         key="Success"
